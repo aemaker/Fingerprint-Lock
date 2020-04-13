@@ -25,6 +25,8 @@ void setup()
     Serial.println("Did not find fingerprint sensor :(");
     while (1) { delay(1); }
   }
+
+  uint8_t p = finger.ledOff();
 }
 
 
@@ -36,6 +38,8 @@ void loop()
   state = digitalRead(D5);
   if(state && !stateLast) {
     fingerprintID = getFingerprintIDez();
+    delay(10);
+    finger.ledOff();
     delay(50);
   
     if(fingerprintID == -1)  return;
